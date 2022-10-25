@@ -36,6 +36,24 @@ void find_placement_in_tree(int x, struct tree_node *t_placering) {
   }
 }
 
+int search_placement_in_tree(int x, struct tree_node *t_placering) {
+
+  //Finds the supposed placement of the item in the tree. Checks if it is there, if not, it returns 0.
+  if (x<=t_placering->item && t_placering->left != NULL) {
+      find_placement_in_tree(x, t_placering->left);
+    } else if (t_placering->right != NULL) {
+      find_placement_in_tree(x, t_placering->right);
+    }
+
+    if (t_placering->item == x) {
+      return 1;
+    } else {
+      return 0;
+    }
+}
+
+
+
 struct tree_node * Insert (int x, struct tree_node *t)
 {
   // Insert item x into the tree t
@@ -43,7 +61,7 @@ struct tree_node * Insert (int x, struct tree_node *t)
   //Tilfælde hvor der ikke er nogen børn.
   
   //DENNE BETINGELSE ITEM==NULL ER LIDT SCUFFED. VIRKER IKKE I TILFÆLDE HVOR DER TJEKKES LEAF-NODE MED VÆRDI 0.
-  if (t->left == NULL && t->right == NULL && t->item==NULL) {
+  if (t->left == NULL && t->right == NULL && t->item==0) {
     t->item=x;
     return t;
   }
@@ -68,7 +86,8 @@ int Contains (int x, struct tree_node *t)
 
   // Return true if the tree t contains item x. Return false otherwise.
 
-  return NULL;
+  //Uses logic to determine where value x is located in the tree. If it is not found, it returns false.
+  return search_placement_in_tree(x, t);
 }
 
 
