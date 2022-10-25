@@ -1,0 +1,24 @@
+Her er en liste med de ting jeg ikke kunne få til at give mening ved afleveringen... Tror det skal ændres før den kommer på brightspace.
+
+   
+   
+    1. Til linked_list opgaven
+
+        Der skal laves om i free_list funktionen. Den får et segmentation fault et tidspunkt hvor den ikke bør. Der er allokeret hukommelse, men den klager over at den ikke kan free noget, der ikke er allokeret.
+
+
+
+
+    2. Til btree opgaven
+
+        
+        2.1 Det er ikke klart hvad der ønskes med initialize funktionen.. Det må naturligt antages, at der ønskes at man allokerer noget memory, sætter item, left og right til NULL; og så må den være færdig. Der er dog et tjek i tests.cpp, der kræver at "  REQUIRE (Empty (Initialize (NULL)));": Dette er kun gældende hvis ikke vi skal allokerer hukommelse i initialize funktionen. Så hvad skal man gøre i initialize?? Jeg har lavet et mærkeligt workaround, hvor jeg antager nogle ting. Det kan ses som kommentar i min opgave.
+
+        
+        2.2 Hvad skal der gøres når noget removes..? Et konkret eksempel er at betragte træet der er tegnet i tests.cpp: Hvis jeg bad dig fjerne "5" i dette træ, hvad bør man så gøre?
+            
+            2.2.1 Skal man helt klippe grenen af? Altså remove alle child nodes og selve noden, hvor item fremgår?
+            
+            2.2.2 Skal man blot fjerne item af noden?... I så fald, hvad er en removed item så defineret som?? Hvis den er defineret som item=0 eksempelvis?
+            
+            2.2.3 Skal man fjerne noden, og så inserte children nodes derefter? I så fald er der flere spørgsmål til eksempelvis remove(5,t) for træet der er tegnet i tests.cpp: Hvad bliver så den nye left for noden med item==20? Er det 1 eller 15? Begge opfylder kriteriet for left child. Hvordan vælger man?
