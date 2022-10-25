@@ -1,2 +1,0 @@
-C:\PROGRA~1\MINGW-~1\bin\ar.exe qc libmymath.a CMakeFiles/mymath.dir/src/linked_list.c.obj CMakeFiles/mymath.dir/src/btree.c.obj
-C:\PROGRA~1\MINGW-~1\bin\ranlib.exe libmymath.a
