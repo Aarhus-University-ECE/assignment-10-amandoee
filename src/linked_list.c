@@ -21,7 +21,7 @@ node *make_node (int v, node * q)
 }
 
 /* free all nodes in the list p */
-void free_list (node * p)
+void free_list2 (node * p)
 {
   node *q = p;
   while (q != &SENTINEL_node)
@@ -32,25 +32,75 @@ void free_list (node * p)
     }
 }
 
+void free_list (node * p)
+{
+  p->next = NULL;
+  free(p);
+  p->value=0;
+}
+
 
 /* print list to console */
 void print_list (node * p)
 {
+
+  if (p == NULL) {
+      printf("List is empty");
+    } else {
+
+
+      node *temp = p;
+
+      if (p != NULL) {
+          temp= p->next;
+          print_list(temp);
+          printf("%d, ", p->value);
+      }
+    }
+
     // Add your code for exercise 1
     // There is NO testcode for this
 }
 
+
+//Der er ingen input til en integer sum-værdi..... Så man skal lave ber
 int sum_squares (node * p)
 {
     // Add your code for excercise 2
     // You can find the tests in tests.cpp
-    return -1;
+
+    int sum = 0;
+    node *temp = p;
+
+
+    //If current node is NULL, return a value that doesnt effect sum (0). Else add value to sum.
+    if (p == NULL) {
+        return 0;
+    } else {
+      sum+=square(temp->value);
+    }
+
+    //If the current node isn't the last node, we wish to go one further along, and add the given value. Works because there is only one step taken at a time, and recursion continues until the last element is found.
+    if (temp->next != NULL) {
+        temp= temp->next;
+        sum+=sum_squares(temp);
+    }
+
+    return sum;
 }
 
 node *map (node * p, int (*f) (int))
 {
     // Add your code for excercise 3
-    return NULL;
+
+    node *temp = p;
+    temp->value=f(temp->value);
+
+    while (temp->next!=NULL){
+        temp=temp->next;
+        temp->value = f(temp->value);
+    }
+    return p;
 }
 
 
