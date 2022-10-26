@@ -1,13 +1,16 @@
 //Program til at løse 8-queens problemet. !!Github CO-Pilot er blevet anvendt til denne ogpave!!
 
+//Nøglen til at løse dette problem er at indse, at der må være én queen per række og kolonne.
+//Derfor kan vi løse problemet ved at løbe igennem hver række og kolonne.
+//Dette gøres rekursivt, hvor vi starter med at sætte en queen i den første række og kolonne, og derefter forsøger at sætte en queen i næste række og kolonne osv. osv. Hvis næste skridt fejler, skal den forrige queen flyttes til næste kolonne, og så prøves der igen.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
-//Initialize 8x8 array array with 0's
 int array[8][8] = {0};
 
-//Function to print array
+//Funktion til at printe array. Benyttes til debugging.
 void printarray() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
@@ -17,25 +20,25 @@ void printarray() {
     }
 }
 
-//Function to check if queen can be placed in array
+//Funktion der tjekker om queen kan placeres i en given placering.
 bool check(int row, int col) {
     int i, j;
 
-    //Check if there is a queen in the same column
+    //Tjek om der er en queen i samme række og kolonne.
     for (i = 0; i < row; i++) {
         if (array[i][col] == 1) {
             return false;
         }
     }
 
-    //Check if there is a queen in the upper left diagonal
+    //Tjek om der er en queen i venstre øvre diagonal. Behøves kun tjekke opad
     for (i = row, j = col; i >= 0 && j >= 0; i--, j--) {
         if (array[i][j] == 1) {
             return false;
         }
     }
 
-    //Check if there is a queen in the upper right diagonal
+    //Tjek om der er en queen i højre øvre diagonal
     for (i = row, j = col; i >= 0 && j < 8; i--, j++) {
         if (array[i][j] == 1) {
             return false;
@@ -46,26 +49,25 @@ bool check(int row, int col) {
 }
 
 
-//Recursive function to place queens in array
+//Funktion der tjekker muligheder, indtil det gælder at der er en dronning i alle 8 rækker.
 bool placeQueen(int row) {
-    //If all queens are placed, return true
+    //Hvis alle dronninger er placeret, returner true.
     if (row == 8) {
         return true;
     }
 
-    //Place queen in each column of the current row
+    //Placer dronning i alle kolonner i en given række.
     for (int i = 0; i < 8; i++) {
         //Check if queen can be placed in array
         if (check(row, i)) {
-            //Place queen in array
             array[row][i] = 1;
 
-            //Check if queen can be placed in the next row
+            //Check om dronning kan placeres i næste række også. Rekursivt, så for alle rækker til en given kombination.
             if (placeQueen(row + 1)) {
                 return true;
             }
 
-            //If queen cannot be placed in the next row, remove queen from array
+            //Hvis dronningen ikke kunne placeres i rækken efter, så fjern dronningen og prøv næste kolonne.
             array[row][i] = 0;
         }
     }
@@ -73,23 +75,19 @@ bool placeQueen(int row) {
     return false;
 }
 
-//Function to print array with queens and their possible moves
+//Printer løsningen med Q for dronning og - for tom plads.
 void printQueens() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             //Print queen
             if (array[i][j] == 1) {
                 printf("Q ");
-            } else if (array[i][j] == 2) {
-                //Print possible moves
-                printf("X ");
-            }           
-            //Print empty space
+            } 
+
+            //Print tomrum
             else {
                 printf(". ");
             }
-
-
         }
         printf("\n");
     }
@@ -100,7 +98,6 @@ void printQueens() {
 void solve() {
     //If all queens can be placed, print array
     if (placeQueen(0)) {
-        //print array with colors
 
         printQueens();
 
