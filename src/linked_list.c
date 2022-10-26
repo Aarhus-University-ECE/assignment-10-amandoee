@@ -41,6 +41,7 @@ void free_list (node * p)
 
 
 /* print list to console */
+//prints if it finds defined value, and calls function to next element in linked list, if there is one.
 void print_list (node * p)
 {
 
@@ -50,11 +51,10 @@ void print_list (node * p)
 
 
       node *temp = p;
-
       if (p != NULL) {
           temp= p->next;
-          print_list(temp);
           printf("%d, ", p->value);
+          print_list(temp);
       }
     }
 
