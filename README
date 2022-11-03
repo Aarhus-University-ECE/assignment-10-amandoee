@@ -12,7 +12,7 @@ Her er en liste med de ting jeg ikke kunne få til at give mening ved aflevering
     2. Til btree opgaven
 
         
-        2.1 Det er ikke klart hvad der ønskes med initialize funktionen.. Det må naturligt antages, at der ønskes at man allokerer noget memory, sætter item, left og right til NULL; og så må den være færdig. Der er dog et tjek i tests.cpp, der kræver at "  REQUIRE (Empty (Initialize (NULL)));": Dette er kun gældende hvis ikke vi skal allokerer hukommelse i initialize funktionen. Så hvad skal man gøre i initialize?? Jeg har lavet et mærkeligt workaround, hvor jeg antager nogle ting. Det kan ses som kommentar i min opgave.
+        2.1 Det er ikke klart hvad der ønskes med initialize funktionen.. Det må naturligt antages, at der ønskes at man allokerere noget memory, sætter item, left og right til NULL; og så må den være færdig. Der er dog et tjek i tests.cpp, der kræver at "  REQUIRE (Empty (Initialize (NULL)));": Dette er kun gældende hvis ikke vi skal allokerer hukommelse i initialize funktionen. Så hvad skal man gøre i initialize?? Jeg har lavet et mærkeligt workaround, hvor jeg antager nogle ting. Det kan ses som kommentar i min opgave.
 
         
         2.2 Hvad skal der gøres når noget removes..? Et konkret eksempel er at betragte træet der er tegnet i tests.cpp: Hvis jeg bad dig fjerne "5" i dette træ, hvad bør man så gøre?

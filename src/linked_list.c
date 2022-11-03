@@ -21,18 +21,17 @@ node *make_node (int v, node * q)
 }
 
 /* free all nodes in the list p */
-void free_list2 (node * p)
+void free_list (node * p)
 {
-  node *q = p;
-  while (q != &SENTINEL_node)
-    {
-      node *t = q->next;
-      free (q);
-      q = t;
-    }
+  node *q;
+  while (p != NULL) {
+    q = p->next;
+    free(p);
+    p = q;
+  }
 }
 
-void free_list (node * p)
+void free_list2 (node * p)
 {
   p->next = NULL;
   free(p);
